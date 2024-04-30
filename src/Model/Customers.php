@@ -20,68 +20,83 @@ class Customers {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function addCustomer($firstName, $lastName, $gender, $email, $phoneNumber, $address, $education, $occupation, $dateOfBirth, $monthlyIncome, $creditScore, $maritalStatus) {
+    public function addCustomer(
+        $firstName, $lastName, $gender, 
+        $email, $phoneNumber, $address, 
+        $education, $occupation, $dateOfBirth, 
+        $monthlyIncome, $creditScore, $maritalStatus) {
         $stmt = $this->pdo->prepare("
-        INSERT INTO customers (first_name, last_name, gender, email, phone_number, address, education, occupation, date_of_birth, monthly_income, credit_score, marital_status) 
-        VALUES 
-        (:first_name, :last_name, :gender, :email, :phone_number, :address, :education, :occupation, :date_of_birth, :monthly_income, :credit_score, :marital_status)"
+        INSERT INTO customers (
+            first_name, last_name, gender, 
+            email, phone_number, address, 
+            education, occupation, date_of_birth, 
+            monthly_income, credit_score, marital_status) 
+        VALUES (
+            :firstName, :lastName, :gender, 
+            :email, :phoneNumber, :address, 
+            :education, :occupation, :dateOfBirth, 
+            :monthlyIncome, :creditScore, :maritalStatus)"
         );
 
         $stmt->execute([
-            'firstName' => $firstName, 
-            'lastName' => $lastName, 
+            'first_name' => $firstName, 
+            'last_name' => $lastName, 
             'gender' => $gender, 
             'email' => $email, 
-            'phoneNumber' => $phoneNumber, 
+            'phone_number' => $phoneNumber, 
             'address' => $address, 
             'education' => $education, 
             'occupation' => $occupation, 
-            'dateOfBirt' => $dateOfBirth, 
-            'monthlyIncome' => $monthlyIncome, 
-            'creditScore' => $creditScore, 
-            'maritalStatus' => $maritalStatus
+            'date_of_birth' => $dateOfBirth, 
+            'monthly_income' => $monthlyIncome, 
+            'credit_score' => $creditScore, 
+            'marital_status' => $maritalStatus
         ]);
 
         return $this->pdo->lastInsertId();
     }
 
-    public function updateCustomer($customerId, $firstName, $lastName, $gender, $email, $phoneNumber, $address, $education, $occupation, $dateOfBirth, $monthlyIncome, $creditScore, $maritalStatus) {
+    public function updateCustomer(
+        $customerId, $firstName, $lastName, 
+        $gender, $email, $phoneNumber, $address, 
+        $education, $occupation, $dateOfBirth, 
+        $monthlyIncome, $creditScore, $maritalStatus) {
         $stmt = $this->pdo->prepare("
         UPDATE customers SET 
-        first_name = :first_name, 
-        last_name = :last_name, 
+        first_name = :firstName, 
+        last_name = :lastName, 
         gender = :gender, 
         email = :email, 
-        phone_number = :phone_number, 
+        phone_number = :phoneNumber, 
         address = :address, 
         education = :education, 
         occupation = :occupation, 
-        date_of_birth = :date_of_birth, 
-        monthly_income = :monthly_income, 
-        credit_score = :credit_score, 
-        marital_status = :marital_status 
-        WHERE customer_id = :customer_id"
+        date_of_birth = :dateOfBirth, 
+        monthly_income = :monthlyIncome, 
+        credit_score = :creditScore, 
+        marital_status = :maritalStatus
+        WHERE customer_id = :customerId"
         );
 
         $stmt->execute([
-            'firstName' => $firstName, 
-            'lastName' => $lastName, 
+            'first_name' => $firstName, 
+            'last_name' => $lastName, 
             'gender' => $gender, 
             'email' => $email, 
-            'phoneNumber' => $phoneNumber, 
+            'phone_number' => $phoneNumber, 
             'address' => $address, 
             'education' => $education, 
             'occupation' => $occupation, 
-            'dateOfBirt' => $dateOfBirth, 
-            'monthlyIncome' => $monthlyIncome, 
-            'creditScore' => $creditScore, 
-            'maritalStatus' => $maritalStatus
+            'date_of_birt' => $dateOfBirth, 
+            'monthly_income' => $monthlyIncome, 
+            'credit_score' => $creditScore, 
+            'marital_status' => $maritalStatus
         ]);
         return $stmt->rowCount() > 0;
     }
 
     public function deleteCustomer($customerId) {
-        $stmt = $this->pdo->prepare("DELETE FROM customers WHERE customer_id = :customer_id");
+        $stmt = $this->pdo->prepare("DELETE FROM customers WHERE customer_id = :customerId");
         $stmt->execute(['customer_id' => $customerId]);
         return $stmt->rowCount() > 0;
     }
