@@ -1,6 +1,6 @@
 <?php
 // Purchases.php
-include 'config/database.php';
+require_once __DIR__ . '/../../config/database.php';
 
 class Purchases {
     private $pdo;
