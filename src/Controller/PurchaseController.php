@@ -19,13 +19,23 @@ class PurchaseController {
     }
 
     // Method untuk menambahkan data pembelian baru
-    public function addPurchase($supplier, $lastVisited, $returnStatus, $warranty, $purchaseDate, $returnPolicy, $feedback, $orderId) {
-        return $this->purchaseModel->addPurchase($supplier, $lastVisited, $returnStatus, $warranty, $purchaseDate, $returnPolicy, $feedback, $orderId);
+    public function addPurchase(
+        $supplier, $lastVisited, $returnStatus, $warranty, 
+        $purchaseDate, $returnPolicy, $feedback, $orderId) {
+        return $this->purchaseModel->addPurchase(
+            $supplier, $lastVisited, $returnStatus, $warranty, 
+            $purchaseDate, $returnPolicy, $feedback, $orderId
+        );
     }
 
     // Method untuk memperbarui data pembelian berdasarkan ID
-    public function updatePurchase($purchaseId, $supplier, $lastVisited, $returnStatus, $warranty, $purchaseDate, $returnPolicy, $feedback, $orderId) {
-        return $this->purchaseModel->updatePurchase($purchaseId, $supplier, $lastVisited, $returnStatus, $warranty, $purchaseDate, $returnPolicy, $feedback, $orderId);
+    public function updatePurchase(
+        $purchaseId, $supplier, $lastVisited, $returnStatus, $warranty, 
+        $purchaseDate, $returnPolicy, $feedback, $orderId) {
+        return $this->purchaseModel->updatePurchase(
+            $purchaseId, $supplier, $lastVisited, $returnStatus, $warranty, 
+            $purchaseDate, $returnPolicy, $feedback, $orderId
+        );
     }
 
     // Method untuk menghapus data pembelian berdasarkan ID
