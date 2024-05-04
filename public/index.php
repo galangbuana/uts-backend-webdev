@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>
-        UJIAN TENGAH SEMESTER<br>Back-End Web Develompent
+        XYZ Sales API End Point
     </h1>
 </body>
 </html>
